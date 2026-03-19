@@ -1,0 +1,19 @@
+{
+  "name": "brain-blitz",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["server", "client", "mcp-server"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=server\" \"npm run dev --workspace=client\"",
+    "dev:mcp": "npm run dev --workspace=mcp-server",
+    "dev:all": "concurrently \"npm run dev --workspace=server\" \"npm run dev --workspace=client\" \"npm run dev --workspace=mcp-server\"",
+    "build": "npm run build --workspace=server && npm run build --workspace=client && npm run build --workspace=mcp-server",
+    "start": "npm run start --workspace=server"
+  },
+  "overrides": {
+    "esbuild": "^0.25.4"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

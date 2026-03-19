@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brain Blitz – Playing</title>
+  <link rel="stylesheet" href="../index.css" />
+</head>
+<body style="margin:0;padding:0;background:#1e1b4b;">
+  <div id="game-play-root"></div>
+  <!--
+    Socket.io CDN loaded BEFORE the React module so window.io is available
+    when the component mounts. vite-plugin-singlefile leaves external src
+    scripts untouched, so this line stays verbatim in the built HTML.
+  -->
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script type="module" src="./index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+# ─── Brain Blitz — Azure Developer CLI (AZD) configuration ────────────────────
+# Deploy with: azd up
+#
+# Architecture:
+#   server     → Azure Container App (Express + Socket.io + React SPA)
+#   mcp-server → Azure Container App (MCP protocol server + Socket.io proxy)
+
+name: brain-blitz
+metadata:
+  template: brain-blitz@0.1.0
+
+hooks:
+  postprovision:
+    shell: pwsh
+    run: ./hooks/postprovision.ps1
+
+infra:
+  provider: bicep
+  path: infra
+  module: main
+
+services:
+  server:
+    # The game server: Express REST API + Socket.io + serves the React SPA
+    host: containerapp
+    language: ts
+    project: .  # Dockerfile needs the full monorepo context (npm workspaces)
+    docker:
+      path: server/Dockerfile
+      context: .
+    hooks:
+      prepackage:
+        shell: pwsh
+        run: npm run build --workspace=client
+
+  mcp-server:
+    # The MCP protocol server for AI assistant integration
+    host: containerapp
+    language: ts
+    project: .  # Same — needs full monorepo context
+    docker:
+      path: mcp-server/Dockerfile
+      context: .
+    hooks:
+      prepackage:
+        shell: pwsh
+        run: npm run build:widgets --workspace=mcp-server

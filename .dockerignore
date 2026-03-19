@@ -1,0 +1,30 @@
+# ─── Docker build excludes ─────────────────────────────────────────────────────
+node_modules
+**/node_modules
+**/.turbo
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Infra (not needed in container images)
+infra/
+
+# AZD
+.azure/
+
+# Dev tools
+*.md
+LICENSE
+.env
+.env.*

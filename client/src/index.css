@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 271 91% 65%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 5.9%;
+    --card-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 271 91% 65%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+}
+
+/* Game themes */
+.theme-classic { --game-bg: #6b21a8; --game-accent: #f59e0b; }
+.theme-ocean   { --game-bg: #0c4a6e; --game-accent: #06b6d4; }
+.theme-volcano { --game-bg: #7c2d12; --game-accent: #f97316; }
+.theme-forest  { --game-bg: #14532d; --game-accent: #84cc16; }
+.theme-galaxy  { --game-bg: #1e1b4b; --game-accent: #a78bfa; }
+
+.game-bg {
+  background-color: var(--game-bg, #6b21a8);
+  min-height: 100vh;
+}
+
+/* Answer button colours */
+.answer-red    { @apply bg-red-500 hover:bg-red-400 border-red-700; }
+.answer-blue   { @apply bg-blue-500 hover:bg-blue-400 border-blue-700; }
+.answer-yellow { @apply bg-yellow-400 hover:bg-yellow-300 border-yellow-600 text-gray-900; }
+.answer-green  { @apply bg-green-500 hover:bg-green-400 border-green-700; }
+
+/* Countdown ring animation */
+.countdown-ring {
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+
+/* Podium entrance animation */
+@keyframes podiumRise {
+  from { opacity: 0; transform: translateY(30px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
